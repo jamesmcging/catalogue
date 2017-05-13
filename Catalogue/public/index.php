@@ -9,7 +9,7 @@ $app = new \Slim\App(["settings" => array('displayErrorDetails' => true, 'addCon
 $container = $app->getContainer();
 
 $container['objDB'] = function () {
-  return Catalogue\Classes\DB::getInstance();
+  return Catalogue\classes\DB::getInstance();
 };
 
 // The following enables CORS
@@ -25,10 +25,23 @@ $app->add(function($request, $response, $next) {
           ->withHeader('Access-Control-Allow-Methods', 'GET');
 });
 
-$app->get('/', Catalogue\Resources\Items::class . ':getHomepage');
+$app->get('/', Catalogue\resources\Homepage::class . ':getHomepage');
 
-$app->get('/items', Catalogue\Resources\Items::class . ':getItems');
+
+$app->get('/items', Catalogue\resources\Items::class . ':getItems');
 
 $app->get('/items/{nItemID}', Catalogue\Resources\Items::class . ':getItems');
+
+
+$app->get('/store/storedata', Catalogue\Resources\Store::class . ':getStoreData');
+
+$app->get('/store/datamappings', Catalogue\Resources\Store::class . ':getDataMappings');
+
+$app->post('/store/datamappings', Catalogue\Resources\Store::class . ':setDataMappings');
+
+$app->get('/store/marketplace', Catalogue\Resources\Store::class . ':getMarketplaceData');
+
+$app->get('/store/cataloguedata', Catalogue\Resources\Store::class . ':getCatalogueData');
+
 
 $app->run();

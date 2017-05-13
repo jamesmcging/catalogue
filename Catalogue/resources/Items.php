@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogue\Resources;
+namespace Catalogue\resources;
 
 use Interop\Container\ContainerInterface as ContainerInterface;
 
@@ -99,7 +99,7 @@ class Items {
     // If a specific field isn't sought then return the following fields by 
     // default. These are the fields required to render the initial item listing
     } else {
-      $sStatement .= 'product_id, product_code, product_name, product_stock, product_price, product_image, product_departmentid as department_id, name as department_name, category_id, category_name ';
+      $sStatement .= '*, product_id, product_code, product_name, product_stock, product_price, product_image, product_departmentid as department_id, name as department_name, category_id, category_name ';
     }
     return $sStatement;
   }
@@ -117,31 +117,35 @@ class Items {
     $arrElements = array();
     
     /* We might be looking for a specific product */
-//    $nProductID = (int)$arrQueryParams['nItemID'];//$this->_objRequest->getAttribute('nItemID');
-//    if (!empty($nProductID)) {
-//      $arrElements[] = 'product_id = :product_id OR product_code = :product_id OR product_name = :product_id';
-//    }
+    if ($nItemID = $this->_objRequest->getAttribute('nItemID')) {
+      $arrElements[] = 'product_id = :product_id OR product_code = :product_id OR product_name = :product_id';
+    }
+    
+    $nProductID = isset($arrQueryParams['nItemID']) ? (int)$arrQueryParams['nItemID'] : '';
+    if (!empty($nProductID)) {
+      $arrElements[] = 'product_id = :product_id OR product_code = :product_id OR product_name = :product_id';
+    }
     
     /* We might be filtering on a department */
-    $nDeptID = (int)$arrQueryParams['nDeptID'];
+    $nDeptID = isset($arrQueryParams['nDeptID']) ? (int)$arrQueryParams['nDeptID'] : '';
     if ($nDeptID && is_numeric($nDeptID)) {
       $arrElements[] = 'product_departmentid = '.$nDeptID;
     }
 
     /* We might be filtering on a category */
-    $nCatID = $arrQueryParams['nCatID'];
+    $nCatID = isset($arrQueryParams['nCatID']) ? $arrQueryParams['nCatID'] : '';
     if (is_numeric($nCatID)) {
       $arrElements[] = 'product.category_link = '.$nCatID;
     }
 
     /* We might be filtering on a brand */
-    $sBrandName = $arrQueryParams['sBrandName'];
+    $sBrandName = isset($arrQueryParams['sBrandName']) ? $arrQueryParams['sBrandName'] : '';
     if ($sBrandName && (strpos($sBrandName, 'all') === false) ) {
       $arrElements[] = 'product_brandname = "'.$sBrandName.'"';
     }
 
     /* We might be filtering on a theme */
-    $sTheme = $arrQueryParams['sTheme'];
+    $sTheme = isset($arrQueryParams['sTheme']) ? $arrQueryParams['sTheme'] : '';
     if ($sTheme && (strpos($sTheme, 'all') === false) ) {
       $arrElements[] = 'product_theme = "'.$sTheme.'"';
     }

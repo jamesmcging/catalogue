@@ -30,18 +30,18 @@ $app->get('/', Catalogue\resources\Homepage::class . ':getHomepage');
 
 $app->get('/items', Catalogue\resources\Items::class . ':getItems');
 
-$app->get('/items/{nItemID}', Catalogue\Resources\Items::class . ':getItems');
+$app->get('/items/{nItemID}', Catalogue\resources\Items::class . ':getItems');
 
 
-$app->get('/store/storedata', Catalogue\Resources\Store::class . ':getStoreData');
+$app->get('/store/storedata', Catalogue\resources\Store::class . ':getStoreData');
 
-$app->get('/store/datamappings', Catalogue\Resources\Store::class . ':getDataMappings');
+$app->get('/store/datamappings', Catalogue\resources\Store::class . ':getDataMappings');
 
-$app->post('/store/datamappings', Catalogue\Resources\Store::class . ':setDataMappings');
+$app->post('/store/datamappings', Catalogue\resources\Store::class . ':setDataMappings');
 
-$app->get('/store/marketplace', Catalogue\Resources\Store::class . ':getMarketplaceData');
+$app->get('/store/marketplace', Catalogue\resources\Store::class . ':getMarketplaceData');
 
-$app->get('/store/cataloguedata', Catalogue\Resources\Store::class . ':getCatalogueData');
+$app->get('/store/cataloguedata', Catalogue\resources\Store::class . ':getCatalogueData');
 
 
 $app->run();

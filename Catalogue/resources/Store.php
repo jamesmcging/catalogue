@@ -5,7 +5,7 @@ namespace Catalogue\resources;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Interop\Container\ContainerInterface as ContainerInterface;
-use Ebay\config\Credentials as Credentials;
+use Catalogue\config\Credentials as Credentials;
 
 /**
  * Description of Store

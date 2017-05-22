@@ -1,8 +1,9 @@
 # ebay-service-catalogue
 
 ## Masters in Software Development @ CIT 2017
+This service forms part of a collection of micro-services that make up the Alaname application. This web application exists to push items from a web DB to eBay and pull orders arising from these back to the web DB. When deployed as part of an omnichannel ecommerce platform this application offers eBay as a channel.
 
-### Overview
+### Service Overview
 This service is charged with managing the communication between the app and the local store. It is an API offering access to items on the local store. The app is envisaged to form a channel in an omnichannel retail solution. In this scenario the authentication of the user to the app is managed by the solution - for the purposes of this exercise this aspect is simplified and the user is assumed to have permission to access the local store.
 
 ### PHP

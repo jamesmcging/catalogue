@@ -1,6 +1,6 @@
 # ebay-service-catalogue
 
-## Masters in Software Development @ CIT 2017
+### Masters in Software Development @ CIT 2017
 This service forms part of a collection of micro-services that make up the Alaname application. This web application exists to push items from a web DB to eBay and pull orders arising from these back to the web DB. When deployed as part of an omnichannel ecommerce platform this application offers eBay as a channel.
 
 ### Service Overview
